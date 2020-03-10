@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LegoMinifigures.Composition.Heads;
+using LegoMinifigures.Composition.Legs;
+using LegoMinifigures.Composition.Torsos;
+using System;
 
 namespace LegoMinifigures
 {
@@ -77,8 +80,32 @@ namespace LegoMinifigures
 
             //Console.ReadLine();
 
-            var astronaut = new Astronaut("Space Person", "Janitor");
-            astronaut.DoYourJob();
+            var head = new ZoeHead
+            {
+                FacialExpression = "Judging",
+                Color = LegoColor.Black,
+                EyeColor = LegoColor.Blue,
+                Helmeted = true
+            };
+
+            var legs = new AstroLegs
+            {
+                HasPants = true,
+                Shoes = ShoeType.Boots,
+            };
+
+            var torso = new AstroTorso
+            {
+                HandType = HandType.Baby,
+                ChiseledAbs = false,
+                NumberOfArms = 3,
+                Shirted = true
+            };
+
+            // if had astronaut2 and changed color of head, it would also change color of head for astronaut1 since there is only 1 instantiation of head
+
+            var astronaut = new Astronaut("Space Person", "Janitor", head, torso, legs);
+            astronaut.DoYourJob(10);
 
             var casper = new Ghost("Casper", DateTime.Today);
             casper.Friendly = true;
@@ -101,8 +128,8 @@ namespace LegoMinifigures
             fatso.Spook();
             fatso.Haunt("Whipstaff Manor");
             fatso.Spook();
-
             Console.ReadLine();
+
         }
     }
 }
