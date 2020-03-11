@@ -2,6 +2,7 @@
 using LegoMinifigures.Composition.Legs;
 using LegoMinifigures.Composition.Torsos;
 using System;
+using System.Collections.Generic;
 
 namespace LegoMinifigures
 {
@@ -94,7 +95,7 @@ namespace LegoMinifigures
                 Shoes = ShoeType.Boots,
             };
 
-            var torso = new AstroTorso
+            var torso1 = new AstroTorso
             {
                 HandType = HandType.Baby,
                 ChiseledAbs = false,
@@ -102,9 +103,19 @@ namespace LegoMinifigures
                 Shirted = true
             };
 
+            var torso2 = new DadBodTorso
+            {
+                HandType = HandType.Baby,
+                Shirted = true
+            };
+
+            torso1.Breathe();
+            torso2.Breathe();
+
             // if had astronaut2 and changed color of head, it would also change color of head for astronaut1 since there is only 1 instantiation of head
 
-            var astronaut = new Astronaut("Space Person", "Janitor", head, torso, legs);
+            var astronaut = new Astronaut("Space Person", "Janitor", head, torso1, legs);
+            var astronaut2 = new Astronaut("Space Lady", "Janitor", head, torso2, legs);
             astronaut.DoYourJob(10);
 
             var casper = new Ghost("Casper", DateTime.Today);
@@ -129,6 +140,16 @@ namespace LegoMinifigures
             fatso.Haunt("Whipstaff Manor");
             fatso.Spook();
             Console.ReadLine();
+
+            var torsos = new List<TorsoBase>();
+            torsos.Add(torso2);
+            torsos.Add(torso1);
+
+            foreach (var torso in torsos)
+            {
+                torso.Breathe();
+                torso.Flex();
+            }
 
         }
     }

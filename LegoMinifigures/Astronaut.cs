@@ -22,13 +22,17 @@ namespace LegoMinifigures
         public string Job { get; private set; }
         public string Age { get; set; }
         public int OxygenLevel { get; set; }
-        public AstroTorso Torso { get; set; }
+
+        // can pass in anything that is a TorsoBase. Takes away specificity
+        public TorsoBase Torso { get; set; }
         public AstroLegs Legs { get; set; }
         public ZoeHead Head { get; set; }
 
-        // when class gets called, need to specify name and job to use instantiated class
+        // difference between inheritance (can only inherit of 1 thing at a time) and composition (broken down to little things and thus, can get access to multiple things)
+
+        // when class gets called, need to specify name and job to use instantiated class.
         public Astronaut(string name, string job, 
-                        ZoeHead head, AstroTorso torso, 
+                        ZoeHead head, TorsoBase torso, 
                         AstroLegs legs)
         {
             Name = name;
