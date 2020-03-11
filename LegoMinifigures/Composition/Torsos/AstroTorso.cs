@@ -4,14 +4,15 @@ using System.Text;
 
 namespace LegoMinifigures.Composition.Torsos
 {
-    class AstroTorso
+    // the : is similar to "extends" in React. The : creates "IS A" relationship
+    class AstroTorso : TorsoBase
     {
         public int NumberOfArms { get; set; }
-        public bool ChiseledAbs { get; set; }
-        public bool Shirted { get; set; }
-        public HandType HandType { get; set; }
-        
-        public void Flex()
+
+        public override bool ChiseledAbs { get; set; }
+
+        // override means method that looks like this in TorsoBase should have the instructions below
+        public override void Flex()
         {
             if (ChiseledAbs && !Shirted)
             {
@@ -26,15 +27,11 @@ namespace LegoMinifigures.Composition.Torsos
                 Console.WriteLine("Weird flex, but ok");
             }
         }
-    }
 
-    enum HandType
-    {
-        Human,
-        Robot,
-        Baby,
-        Tentacles,
-        CanadaArm,
-        XBuster
+        // override below means it is overriding previously defined behavior
+        public override void Breathe()
+        {
+            Console.WriteLine("Exhale, inhale...");
+        }
     }
 }
