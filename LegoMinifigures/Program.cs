@@ -145,6 +145,10 @@ namespace LegoMinifigures
             torsos.Add(torso2);
             torsos.Add(torso1);
 
+            // code below is same as above
+
+            //var torsos = new List<TorsoBase> { torso1, torso2};
+
             foreach (var torso in torsos)
             {
                 torso.Breathe();
