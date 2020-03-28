@@ -1,15 +1,17 @@
-﻿using System;
+﻿using LegoMinifigures.Composition.Heads;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LegoMinifigures.Composition.Legs
 {
-    class BabyLegs
+    class BabyLegs : IColorful, IMoveable
     {
         public bool CanWalk { get; set; }
         public int NumOfRolls { get; set; }
         public bool IsClumsy => true;
         public bool HasPants { get; set; }
+        public LegoColor Color => LegoColor.White;
 
         public void Walk(int steps)
         {
@@ -26,6 +28,11 @@ namespace LegoMinifigures.Composition.Legs
         public void Kick()
         {
             Console.WriteLine($"Baby legs kick with the power of {NumOfRolls} fat rolls!!");
+        }
+
+        public void Move(int howFar)
+        {
+            Walk(howFar);
         }
     }
 }
