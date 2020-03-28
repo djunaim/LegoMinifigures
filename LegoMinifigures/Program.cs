@@ -147,12 +147,41 @@ namespace LegoMinifigures
 
             // code below is same as above
 
-            //var torsos = new List<TorsoBase> { torso1, torso2};
+            //var torsos = new List<TorsoBase> { torso1, torso2 };
 
             foreach (var torso in torsos)
             {
                 torso.Breathe();
                 torso.Flex();
+
+                switch (torso)
+                {
+                    case DadBodTorso dbod:
+                        dbod.ChangeTemp("Hot");
+                        break;
+                }
+            }
+
+            // interface allows non-related things to interact because of externally facing stuff
+            // below torso2 is DadBodTorso
+            // both torso2 and BabyLegs has IColorful, that's why they can interact
+            // both share IColorful and share LegoColor because LegoColor is defined in IColorful
+            //var colorfulThings = new List<IColorful> { torso2, torso1, new BabyLegs() };
+            //foreach (var colorfulThing in colorfulThings)
+            //{
+            //    Console.WriteLine(colorfulThing.Color);
+            //}
+
+            var colorfulThings = new List<IColorful> { torso2, torso1, new BabyLegs() };
+            foreach (var colorfulThing in colorfulThings)
+            {
+                // look into colorful thing and if IMoveable exists put it in mover
+                switch (colorfulThing)
+                {
+                    case IMoveable mover:
+                        mover.Move(5);
+                        break;
+                }
             }
 
         }

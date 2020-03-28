@@ -1,10 +1,12 @@
-﻿using System;
+﻿using LegoMinifigures.Composition.Heads;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace LegoMinifigures.Composition.Torsos
 {
-    class DadBodTorso : TorsoBase
+    // classes can implement as many interfaces as they want
+    class DadBodTorso : TorsoBase, IColorful, IMoveable
     {
         public bool IsHairy { get; set; }
         public override bool ChiseledAbs
@@ -12,6 +14,7 @@ namespace LegoMinifigures.Composition.Torsos
             get { return false; }
             set { }
         }
+        //public LegoColor Color => LegoColor.Yellow;
 
         public void ChangeTemp(string weather)
         {
@@ -31,6 +34,11 @@ namespace LegoMinifigures.Composition.Torsos
             Console.WriteLine($"The dad bod flexes his {(IsHairy ? "hairy" : "smooth")} "
                                 + $" beer belly while using his {HandType} "
                                 + " hands to point at his flabby arms.");
+        }
+
+        public void Move(int howFar)
+        {
+            Console.WriteLine($"Dances in the grocery store for {howFar} long.");
         }
     }
 }
